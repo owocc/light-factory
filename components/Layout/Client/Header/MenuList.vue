@@ -2,6 +2,7 @@
 import {gsap} from 'gsap'
 import clsx from 'clsx'
 
+
 const PinNav = inject('PinNav')
 const menu = ref()
 const handlerToggleMenu = (state) => {
@@ -15,6 +16,9 @@ const menuListContainerClasses = clsx(
     'lg:top-0 lg:bg-transparent lg:relative lg:p-0 lg:border-none',
     'dark:bg-container-dark dark:border-none'
 )
+
+const {navbarMenuList} = useClientNavConfig()
+
 </script>
 
 <template>
@@ -24,13 +28,14 @@ const menuListContainerClasses = clsx(
       :class="menuListContainerClasses"
   >
     <ul class="flex flex-col text-center gap-y-8 lg:flex-row lg:gap-16">
-      <li v-for="item in 4">
-        <!-- lg:bg-gradient-to-r lg:from-primary lg:to-gray-800 lg:text-transparent lg:bg-clip-text -->
-        <a
-            href="#"
-            class="text-base  hover:bg-third-gradient hover:bg-clip-text hover:text-transparent lg:dark:text-white"
+      <li v-for="menu in navbarMenuList">
+        <NuxtLink
+            activeClass="!bg-third-gradient !bg-clip-text !text-transparent"
+            :to="menu.to"
+            class="hover:bg-third-gradient hover:bg-clip-text hover:text-transparent lg:dark:text-white"
             :class="PinNav ? 'lg:text-base-title' : 'lg:text-gray-200'"
-        >页面链接</a
+        >{{ menu.title }}
+        </NuxtLink
         >
       </li>
     </ul>

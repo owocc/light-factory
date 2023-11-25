@@ -16,24 +16,29 @@
           <h3
               class="bg-third-gradient font-normal mb-2 text-transparent bg-clip-text"
           >
-            副标题
+            一盏灯
           </h3>
-          <h1 class="text-white text-3xl font-medium mb-6 md:text-6xl">
-            文字 <br/>
-            字数多的文字
+          <h1 class="text-white text-3xl font-medium mb-4 md:text-6xl ">
+            光影悠香 <br/>
+
           </h1>
+          <h2 class="text-4xl text-white  mb-6 lg:text-7xl">温暖心房</h2>
 
           <!-- buttons -->
           <div class="flex gap-x-4 justify-center md:justify-normal">
             <a
                 href="#"
-                class="inline-block bg-third-gradient py-3 px-12 rounded-full text-white font-medium shadow-lg"
-            >探索更多</a
+                class="inline-flex group items-center hover:pl-14 gap-x-1 bg-third-gradient py-3 transition-all px-12 rounded-full text-white font-medium shadow-lg"
+            >
+              发现更多
+              <Icon name="i-carbon-edt-loop" class="text-xl group-hover:ml-2 transition-all duration-300 ease-in-out"/>
+            </a
             >
 
-            <a href="#" class="flex items-center justify-center gap-x-2">
-              <i class="i-carbon-play-outline text-2xl"/> 播放视频
-            </a>
+            <button class="flex items-center justify-center gap-x-2 group hover:text-primary transition-all ease-in-out">
+              <Icon name="i-carbon-play-outline" class=" text-2xl"/>
+              播放视频
+            </button>
           </div>
         </div>
 
@@ -49,28 +54,6 @@
           </div>
         </div>
       </div>
-
-      <!-- home img -->
-      <!--      <div class="relative justify-self-center">-->
-      <!--        <div-->
-      <!--            class="w-64 h-80 border-[6px] border-transparent linear-gradient-bg rounded-t-full lg:w-[400px] lg:h-[520px] lg:border-8"-->
-      <!--        >-->
-      <!--          <img-->
-      <!--              src="/img/home-lamp.png"-->
-      <!--              alt=""-->
-      <!--              class="w-56 mx-auto -translate-y-[6px] lg:w-[380px] lg:-translate-y-[8px]"-->
-      <!--          />-->
-      <!--          <h1-->
-      <!--              class="text-center text-5xl -tracking-tighter text-white text-opacity-30 font-medium lg:text-8xl"-->
-      <!--          >-->
-      <!--            LIGHT-->
-      <!--          </h1>-->
-      <!--        </div>-->
-      <!--        &lt;!&ndash; shadow &ndash;&gt;-->
-      <!--        <div-->
-      <!--            class="absolute w-52 h-8 bg-primary bg-opacity-60 -bottom-3 inset-x-0 mx-auto blur-md -z-10 lg:w-[350px] lg:blur-lg lg:h-14"-->
-      <!--        ></div>-->
-      <!--      </div>-->
       <CommonCardLamp theme="first" lamp-image="/img/home-lamp.png"/>
     </div>
   </section>
@@ -82,3 +65,5 @@
 }
 
 </style>
+<script setup lang="ts">
+</script>

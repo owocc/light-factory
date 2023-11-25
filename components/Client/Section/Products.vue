@@ -9,11 +9,10 @@
         <!-- data -->
         <div class="text-center mb-8 max-w-sm mx-auto">
           <!-- title -->
-          <h2 class="text-2xl mb-4 md:text-center lg:text-5xl">更多灯具</h2>
+          <h2 class="text-2xl mb-4 md:text-center lg:text-5xl">探索更多精彩选择</h2>
           <p>
-            描述信息描述信息描述信息描述信息描述
-            信息描述信息描述信息描述信息描述信息
-            信息描述信息描述信息描述信息描述信息
+            开启探索之旅，发现无尽选择。
+            <br/>每款产品都蕴含独特设计，为你的空间注入精致光彩，打造个性化生活氛围。
           </p>
         </div>
 

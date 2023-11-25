@@ -15,7 +15,7 @@ const props = defineProps<LogoProps>()
       :class="
       clsx(
         'font-medium duration-500 flex items-center text-xl transition-all group dark:text-white',
-        props.dark ? 'text-base-title' : 'text-white'
+        props.dark ? 'text-base-title ' : 'text-white'
       )
     "
   >

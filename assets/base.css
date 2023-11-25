@@ -22,9 +22,9 @@ html {
     writing-mode: vertical-lr;
 }
 
-.dark-mode > body {
-    background: #0F100F;
-}
+/*.dark-mode > body {*/
+/*    background: #0F100F;*/
+/*}*/
 
 @layer base {
     .nav {
@@ -33,13 +33,13 @@ html {
     }
 
     body {
-        @apply text-base bg-base-body dark:bg-base-dark ;
+        @apply !text-base !bg-base-body dark:!bg-base-dark dark:!text-white ;
     }
 
     h1,
     h2,
     h3,
     h4 {
-        @apply text-base-title font-medium;
+        @apply text-base-title font-medium dark:text-gray-100;
     }
 }

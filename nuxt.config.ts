@@ -19,5 +19,8 @@ export default defineNuxtConfig({
     dirs: [
       'composables/config/*.{js,ts}'
     ]
+  },
+  app: {
+    pageTransition: { name: 'page', mode: 'out-in' }
   }
 })

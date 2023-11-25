@@ -1,7 +1,7 @@
 <template>
-  <LayoutClientHeader/>
-  <slot/>
-  <LayoutClientFooter/>
+  <div>
+    <LayoutClientHeader />
+    <slot />
+    <LayoutClientFooter />
+  </div>
 </template>
-<script setup lang="ts">
-</script>

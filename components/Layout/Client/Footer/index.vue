@@ -1,40 +1,22 @@
+<script setup lang="ts">
+const {footerLinks} = useClientNavConfig()
+</script>
+
 <template>
   <footer class="pt-32">
     <div class="px-6 pb-12 max-w-6xl mx-auto">
       <div class="grid gap-y-12 gap-8 md:grid-cols-[max-content,1fr]">
-        <div class="max-w-sm">
+        <div class="max-w-md lg:min-w-[24rem]">
           <div class="mb-4 ">
             <CommonLogo dark/>
           </div>
-          <div>网站描述网站描述网站描述网站描述网站描述网站描述网站描述</div>
+          <p>星光灯坊，独特设计，温馨照明。精选灯具，点亮生活。</p>
         </div>
         <!-- footer data -->
         <div
             class="grid grid-cols-2 gap-y-10 gap-x-16 md:grid-cols-3 xl:grid-cols-4"
         >
-          <div v-for="itemf in 3">
-            <h3 class="text-md font-medium mb-4">相关链接分类</h3>
-            <ul class="grid gap-y-3">
-              <li v-for="item in 3">
-                <a href="#" class="transition-colors text-sm hover:text-primary"
-                >网站相关链接</a
-                >
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 class="text-lg font-medium mb-4">社交平台</h3>
-            <ul class="flex gap-x-3">
-              <li>
-                <a href="#"
-                   class="text-2xl inline-flex p-1 bg-third-gradient transition-transform hover:-translate-y-1 rounded-full">
-                  <Icon name="i-carbon-logo-wechat"
-                        class="text-base-body"/>
-                </a>
-              </li>
-            </ul>
-          </div>
+          <LayoutClientFooterSiteLink v-for="item in footerLinks" :title="item.title" :links="item.links"/>
         </div>
       </div>
       <!-- footer group -->
@@ -42,12 +24,14 @@
           class="mt-16 flex flex-col text-center md:flex-row md:justify-between items-center text-sm gap-y-4"
       >
         <div class="flex justify-center gap-x-6 md:order-1">
-          <a href="">条款和协议</a>
-          <a href="">隐私政策</a>
+          <!-- 一则隐私政策 -->
+
+          <UiLink href="#">条款和协议</UiLink>
+          <UiLink href="#">隐私政策</UiLink>
         </div>
         <span>
-          <!-- 一则隐私政策 -->
-          © 2023 by 星光 . All rights reserved.
+
+          © 2023 星光灯坊
         </span>
       </div>
     </div>

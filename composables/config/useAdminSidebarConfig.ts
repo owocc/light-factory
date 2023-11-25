@@ -1,76 +1,46 @@
-import {MenuOption} from "naive-ui";
+import type { MenuOption } from 'naive-ui'
+import { NuxtLink } from '#components'
 
 const menuList: MenuOption = [
   {
-    label: '仪表盘',
-    key: 'hear-the-wind-sing',
+    label: () => h(NuxtLink, {
+      to: '/admin'
+    }, { default: () => '仪表盘' }),
+    key: 'admin'
   },
   {
-    label: '灯具管理',
-    key: 'pinball-1973',
-    children: [
-      {
-        label: '哈哈',
-        key: 'rat'
-      }
-    ]
+    label: () => h(NuxtLink, {
+      to: '/admin/lamp'
+    }, { default: () => '灯具分类管理' }),
+    key:
+      'pinball-19312'
+  },
+  {
+    label: () => h(NuxtLink, {
+      to: '/admin/lamp'
+    }, { default: () => '灯具管理' }),
+    key:
+      'pinball-1973'
   },
   {
     label: '订单管理',
-    key: 'a-wild-sheep-chasesd',
+    key:
+      'a-wild-sheep-chasesd'
+  },
+  {
+    label: () => h(NuxtLink, {
+      to: '/admin/lamp'
+    }, { default: () => '站点管理' }),
+    key:
+      'pinball-asdasd'
   },
   {
     label: '私人定制',
-    key: 'a-wild-sheep-chase',
-  },
-  {
-    label: '站点管理',
-    key: 'dance-dance-dance',
-    children: [
-      {
-        type: 'group',
-        label: '首页',
-        key: 'people',
-        children: [
-          {
-            label: '叙事者',
-            key: 'narrator',
-          },
-          {
-            label: '羊男',
-            key: 'sheep-man',
-          }
-        ]
-      },
-      {
-        label: '饮品',
-        key: 'beverage',
-        children: [
-          {
-            label: '威士忌',
-            key: 'whisky'
-          }
-        ]
-      },
-      {
-        label: '食物',
-        key: 'food',
-        children: [
-          {
-            label: '三明治',
-            key: 'sandwich'
-          }
-        ]
-      },
-      {
-        label: '过去增多，未来减少',
-        key: 'the-past-increases-the-future-recedes'
-      }
-    ]
+    key:
+      'a-wild-sheep-chase'
   }
 ]
-export default function useAdminSidebarConfig() {
-
+export default function useAdminSidebarConfig () {
   return {
     menuList
   }

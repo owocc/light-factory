@@ -2,7 +2,7 @@
 useSeoMeta({
   title: '星光灯坊 | 首页',
   description: '一个灯具',
-  ogImage: '/preview.png',
+  ogImage: '/preview.png'
 })
 
 useHead({
@@ -21,11 +21,11 @@ useHead({
 
 <template>
   <main>
-    <ClientSectionHome/>
-    <ClientSectionPopular/>
-    <ClientSectionChoose/>
-    <ClientSectionFeatures/>
-    <ClientSectionProducts/>
-    <ClientSectionJoin/>
+    <ClientSectionHome />
+    <ClientSectionPopular />
+    <ClientSectionChoose />
+    <ClientSectionFeatures />
+    <ClientSectionProducts />
+    <ClientSectionJoin />
   </main>
 </template>
