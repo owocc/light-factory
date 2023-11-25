@@ -1,13 +1,10 @@
-<script setup>
-provide('PinNav', true)
-</script>
 <template>
   <footer class="pt-32">
     <div class="px-6 pb-12 max-w-6xl mx-auto">
       <div class="grid gap-y-12 gap-8 md:grid-cols-[max-content,1fr]">
         <div class="max-w-sm">
           <div class="mb-4 ">
-            <CommonLogo/>
+            <CommonLogo dark/>
           </div>
           <div>网站描述网站描述网站描述网站描述网站描述网站描述网站描述</div>
         </div>
@@ -30,10 +27,10 @@ provide('PinNav', true)
             <h3 class="text-lg font-medium mb-4">社交平台</h3>
             <ul class="flex gap-x-3">
               <li>
-                <a href="#" class="text-2xl">
-                  <span
-                      class="i-carbon-logo-wechat bg-third-gradient transition-transform hover:-translate-y-1"
-                  />
+                <a href="#"
+                   class="text-2xl inline-flex p-1 bg-third-gradient transition-transform hover:-translate-y-1 rounded-full">
+                  <Icon name="i-carbon-logo-wechat"
+                        class="text-base-body"/>
                 </a>
               </li>
             </ul>

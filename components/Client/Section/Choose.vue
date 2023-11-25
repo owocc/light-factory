@@ -4,28 +4,7 @@
     <div
         class="grid gap-12 px-6 max-w-6xl mx-auto md:grid-cols-2 md:items-center"
     >
-      <!-- image -->
-      <div class="relative justify-self-center">
-        <!-- choose blob -->
-        <div
-            class="background-second-gradient border-[6px] border-transparent rounded-t-full w-52 h-80 lg:w-[400px] lg:h-[520px] lg:border-8"
-        >
-          <img
-              src="/img/choose-lamp.png"
-              alt=""
-              class="relative block w-40 mx-auto translate-y-[-6px] z-20 lg:w-[280px] lg:-translate-y-[8px]"
-          />
-          <h1
-              class="text-5xl tracking-[0.5rem] text-white text-opacity-30 font-medium left-4 bottom-12 absolute writing-vertical-lr rotate-180 lg:text-7xl"
-          >
-            LIGHT
-          </h1>
-        </div>
-        <!-- shadow -->
-        <div
-            class="bg-primary absolute bg-opacity-60 w-44 h-8 blur-md -bottom-3 -z-10 inset-x-0 mx-auto lg:w-[350px] lg:blur-lg lg:h-14"
-        ></div>
-      </div>
+      <CommonCardLamp/>
       <!-- choose content -->
       <div class="grid gap-y-8">
         <!-- choose data -->
@@ -44,7 +23,7 @@
               <div
                   class="items-center inline-flex p-1 bg-third-gradient rounded-lg text-white text-lg shadow-sm transition-all shadow-primary-alt"
               >
-                <i class="i-carbon-add transition-transform duration-300"/>
+                <Icon name="i-carbon-add" class="transition-transform duration-300"/>
               </div>
               <!-- faq title -->
               <h3 class="font-normal">FAQ 标题文字一大长串</h3>

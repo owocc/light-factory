@@ -5,21 +5,25 @@
 :root {
     --header-height: 3.5rem;
     --first-gradient: linear-gradient(90deg, #b44722 0%, #efc0a9 100%);
+    --first-gradient-alt: linear-gradient(90deg, #d65429 0%, #efc0a9 100%);
     --second-gradient: linear-gradient(90deg, #e07742 0%, #f4bfa4 100%);
+    --second-gradient-alt: linear-gradient(90deg, #e69065 0%, #f4bfa4 100%);
     --third-gradient: linear-gradient(90deg, #ad421f 0%, #d8845a 100%);
+
 }
 
 html {
+    /*为网站开启平滑滚动*/
     scroll-behavior: smooth;
 }
 
-.background-second-gradient {
-    background: var(--second-gradient) padding-box,
-    linear-gradient(90deg, #e69065 0%, #f4bfa4 100%) border-box;
-}
 
 .writing-vertical-lr {
     writing-mode: vertical-lr;
+}
+
+.dark-mode > body {
+    background: #0F100F;
 }
 
 @layer base {
@@ -29,7 +33,7 @@ html {
     }
 
     body {
-        @apply text-base bg-base-body;
+        @apply text-base bg-base-body dark:bg-base-dark ;
     }
 
     h1,

@@ -21,17 +21,16 @@ onMounted(() => {
   <header
       :class="
       clsx(
-        'w-full sticky top-0 left-0 nav z-50 transition-colors px-6',
-        showBG ? 'bg-base-body shadow-md' : 'bg-base-dark'
+        'w-full sticky top-0 left-0 nav z-50 transition-colors px-6 dark:bg-base-dark',
+        showBG ? 'bg-base-body shadow-sm ' : 'bg-base-dark'
       )
     "
   >
     <nav class="max-w-7xl mx-auto h-full flex justify-between items-center">
-      <CommonLogo/>
+      <CommonLogo :dark="showBG"/>
       <div class="flex items-center gap-x-4 lg:gap-x-16">
         <LayoutClientHeaderMenuList/>
-        <Icon name="i-carbon-light" class=" text-lg transition-colors duration-500 lg:text-xl"
-              :class="showBG ? 'text-base-title' : 'text-white'"/>
+        <LayoutClientHeaderActions/>
       </div>
     </nav>
   </header>

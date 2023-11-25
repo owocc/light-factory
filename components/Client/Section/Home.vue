@@ -51,26 +51,27 @@
       </div>
 
       <!-- home img -->
-      <div class="relative justify-self-center">
-        <div
-            class="w-64 h-80 border-[6px] border-transparent linear-gradient-bg rounded-t-full lg:w-[400px] lg:h-[520px] lg:border-8"
-        >
-          <img
-              src="/img/home-lamp.png"
-              alt=""
-              class="w-56 mx-auto -translate-y-[6px] lg:w-[380px] lg:-translate-y-[8px]"
-          />
-          <h1
-              class="text-center text-5xl -tracking-tighter text-white text-opacity-30 font-medium lg:text-8xl"
-          >
-            LIGHT
-          </h1>
-        </div>
-        <!-- shadow -->
-        <div
-            class="absolute w-52 h-8 bg-primary bg-opacity-60 -bottom-3 inset-x-0 mx-auto blur-md -z-10 lg:w-[350px] lg:blur-lg lg:h-14"
-        ></div>
-      </div>
+      <!--      <div class="relative justify-self-center">-->
+      <!--        <div-->
+      <!--            class="w-64 h-80 border-[6px] border-transparent linear-gradient-bg rounded-t-full lg:w-[400px] lg:h-[520px] lg:border-8"-->
+      <!--        >-->
+      <!--          <img-->
+      <!--              src="/img/home-lamp.png"-->
+      <!--              alt=""-->
+      <!--              class="w-56 mx-auto -translate-y-[6px] lg:w-[380px] lg:-translate-y-[8px]"-->
+      <!--          />-->
+      <!--          <h1-->
+      <!--              class="text-center text-5xl -tracking-tighter text-white text-opacity-30 font-medium lg:text-8xl"-->
+      <!--          >-->
+      <!--            LIGHT-->
+      <!--          </h1>-->
+      <!--        </div>-->
+      <!--        &lt;!&ndash; shadow &ndash;&gt;-->
+      <!--        <div-->
+      <!--            class="absolute w-52 h-8 bg-primary bg-opacity-60 -bottom-3 inset-x-0 mx-auto blur-md -z-10 lg:w-[350px] lg:blur-lg lg:h-14"-->
+      <!--        ></div>-->
+      <!--      </div>-->
+      <CommonCardLamp theme="first" lamp-image="/img/home-lamp.png"/>
     </div>
   </section>
 </template>
@@ -80,8 +81,4 @@
   clip-path: polygon(0 0, 100% 0, 100% 100%, 0 88%);
 }
 
-.linear-gradient-bg {
-  background: var(--first-gradient) padding-box,
-  linear-gradient(90deg, #d65429 0%, #efc0a9 100%) border-box;
-}
 </style>

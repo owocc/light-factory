@@ -10,20 +10,25 @@ const handlerToggleMenu = (state) => {
     duration: 0.4,
   })
 }
+const menuListContainerClasses = clsx(
+    'fixed left-0 -top-full divide-fuchsia-400 bg-base-body w-full p-16 z-50 border-b ',
+    'lg:top-0 lg:bg-transparent lg:relative lg:p-0 lg:border-none',
+    'dark:bg-container-dark dark:border-none'
+)
 </script>
 
 <template>
   <!-- 导航菜单 -->
   <div
       ref="menu"
-      class="fixed left-0 -top-full divide-fuchsia-400 bg-base-body w-full p-16 z-50 lg:top-0 lg:bg-transparent lg:relative lg:p-0 border-b lg:border-none"
+      :class="menuListContainerClasses"
   >
     <ul class="flex flex-col text-center gap-y-8 lg:flex-row lg:gap-16">
       <li v-for="item in 4">
         <!-- lg:bg-gradient-to-r lg:from-primary lg:to-gray-800 lg:text-transparent lg:bg-clip-text -->
         <a
             href="#"
-            class="text-base hover:bg-third-gradient hover:bg-clip-text hover:text-transparent "
+            class="text-base  hover:bg-third-gradient hover:bg-clip-text hover:text-transparent lg:dark:text-white"
             :class="PinNav ? 'lg:text-base-title' : 'lg:text-gray-200'"
         >页面链接</a
         >
@@ -32,7 +37,7 @@ const handlerToggleMenu = (state) => {
     <!-- 关闭按钮 -->
     <div
         @click="handlerToggleMenu(false)"
-        class="flex cursor-pointer absolute top-4 right-6 text-2xl text-base-title lg:hidden"
+        class="flex cursor-pointer absolute top-4 dark:text-white right-6 text-2xl text-base-title lg:hidden"
     >
       <Icon name="i-carbon-close"/>
 
@@ -44,7 +49,7 @@ const handlerToggleMenu = (state) => {
       @click="handlerToggleMenu(true)"
       :class="
       clsx(
-        'flex cursor-pointer text-lg  transition-colors duration-500 lg:hidden',
+        'flex cursor-pointer text-lg  dark:text-white transition-colors duration-500 lg:hidden',
         PinNav ? 'text-base-title' : 'text-white'
       )
     "
