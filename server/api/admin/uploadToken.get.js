@@ -4,7 +4,7 @@ export default defineEventHandler(async (event) => {
   const {qiniuAccessKey, qiniuSecretKey, qiniuBucket} = useRuntimeConfig()
   const mac = new qiniu.auth.digest.Mac(qiniuAccessKey, qiniuSecretKey)
 
-  const options: qiniu.rs.PutPolicyOptions = {
+  const options= {
     scope: qiniuBucket
   }
 

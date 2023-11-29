@@ -15,13 +15,13 @@ export default defineNuxtConfig({
   },
   imports: {
     dirs: [
-      'composables/config/*.{js,ts}',
-      'composables/api/{admin,client}/*.{ts,js}',
+      'composables/config/*.{js,mjs}',
+      'composables/api/{admin,client}/*.{js,mjs}',
     ]
   },
   runtimeConfig: {
     qiniuAccessKey: process.env.QINIU_ACCESSKEY,
     qiniuSecretKey: process.env.QINIU_SECRETKEY,
     qiniuBucket: process.env.QINIU_BUCKET
-  }
+  },
 })
