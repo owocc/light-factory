@@ -3,6 +3,7 @@ import clsx from 'clsx'
 
 interface LampProps {
   lampImage?: string
+  imgClass?: string
   alt?: string
   theme?: 'first' | 'second' | 'third'
   direction?: 'center' | 'left' | 'right'
@@ -16,10 +17,10 @@ const props = withDefaults(defineProps<LampProps>(), {
 
 const cardClasses = computed(() => clsx(
     // 通用样式
-    'border-[6px]  border-transparent rounded-t-full  lg:border-8 lg:w-[450px] lg:h-[580px]',
+    'border-[6px]  border-transparent rounded-t-full transition-all  lg:border-8 lg:w-[450px] lg:h-[580px]',
     //不同主题的样式
     props.theme === 'second' && 'card-second-gradient',
-    props.theme === 'first' ? 'card-first-gradient h-72 w-52' : 'w-52 h-80 ',
+    props.theme === 'first' ? 'card-first-gradient h-72 w-52 md:w-60 md:h-62' : 'w-52 h-80 ',
 ))
 
 const cardTextClasses = computed(() => clsx(
@@ -37,7 +38,8 @@ const cardTextClasses = computed(() => clsx(
       <img
           :src="props.lampImage"
           :alt="props.alt"
-          class="relative justify-self-center block w-40 mx-auto translate-y-[-6px] z-20 lg:w-[380px] lg:-translate-y-[8px]"
+          class="relative transition-all ease-in-out justify-self-center block w-40 mx-auto translate-y-[-6px] z-20 lg:w-[380px] lg:-translate-y-[8px]"
+          :class="imgClass"
       />
       <h1
           :class="cardTextClasses"

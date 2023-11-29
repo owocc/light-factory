@@ -22,7 +22,7 @@ onMounted(() => {
       :class="
       clsx(
         'w-full sticky top-0 left-0 nav z-50 transition-colors px-6 dark:bg-base-dark',
-        showBG ? 'bg-base-body shadow-sm ' : 'bg-base-dark'
+        showBG ? 'bg-base-body shadow-sm dark:border-b dark:border-b-primary' : 'bg-base-dark '
       )
     "
   >

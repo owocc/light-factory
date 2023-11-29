@@ -6,10 +6,8 @@ export default defineNuxtConfig({
   modules: [
     // '@sidebase/nuxt-auth',
     'nuxt-swiper',
-    '@nuxtjs/tailwindcss',
-    '@bg-dev/nuxt-naiveui',
     'nuxt-icon',
-    '@nuxtjs/color-mode'
+    '@nuxt/ui'
   ],
   css: ['~/assets/base.css'],
   typescript: {
@@ -17,10 +15,13 @@ export default defineNuxtConfig({
   },
   imports: {
     dirs: [
-      'composables/config/*.{js,ts}'
+      'composables/config/*.{js,ts}',
+      'composables/api/{admin,client}/*.{ts,js}',
     ]
   },
-  app: {
-    pageTransition: { name: 'page', mode: 'out-in' }
+  runtimeConfig: {
+    qiniuAccessKey: process.env.QINIU_ACCESSKEY,
+    qiniuSecretKey: process.env.QINIU_SECRETKEY,
+    qiniuBucket: process.env.QINIU_BUCKET
   }
 })

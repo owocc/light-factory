@@ -10,8 +10,8 @@ const props = defineProps<LogoProps>()
 </script>
 
 <template>
-  <a
-      href="#"
+  <NuxtLink
+      to="/"
       :class="
       clsx(
         'font-medium duration-500 flex items-center text-xl transition-all group dark:text-white',
@@ -19,9 +19,9 @@ const props = defineProps<LogoProps>()
       )
     "
   >
-    <img src="/favicon.png" v-if="props.logo" alt="Logo" class="w-6 mr-2"/>
+    <img src="/favicon.png" v-if="props.logo" alt="Logo" class="w-8 mr-2"/>
     <span class="bg-third-gradient text-transparent bg-clip-text">星光</span
     >灯坊
 
-  </a>
+  </NuxtLink>
 </template>

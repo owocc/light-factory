@@ -3,11 +3,11 @@
     <div
         class="grid gap-12 px-6 max-w-6xl mx-auto md:grid-cols-2 md:items-center"
     >
-      <CommonCardLamp/>
+      <CommonCardLamp lamp-image="/img/industrial-lamp.png" img-class="lg:!w-[280px]"/>
       <div class="grid gap-y-8">
         <div class="text-center md:text-left ">
           <h2 class="text-2xl mb-4 lg:mb-6 lg:text-5xl lg:font-bold">为什么选择我们</h2>
-          <p>关于品牌介绍的文字,品牌的描述,品牌的优点</p>
+          <p class="text-gray-400">关于品牌介绍的文字,品牌的描述,品牌的优点</p>
         </div>
         <!-- faq -->
         <div class="grid gap-y-8">

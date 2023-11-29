@@ -35,6 +35,9 @@ export default {
       },
       spacing: {
         90: '22rem'
+      },
+      boxShadow: {
+        line: '0 1px 0px rgba(0, 0, 0, 1)'
       }
     }
   },

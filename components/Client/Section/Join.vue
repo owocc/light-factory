@@ -23,7 +23,7 @@
 
           <!-- Customization Request Form -->
           <form class="grid gap-3 md:grid-cols-[1fr,max-content] md:gap-2 md:bg-base-body md:rounded-full">
-            <input type="email" placeholder="请输入您的邮箱" class="w-full bg-base-body py-4 px-6 rounded-full"/>
+            <input type="email" placeholder="请输入您的邮箱" class="w-full dark:text-base-title bg-base-body py-4 px-6 rounded-full"/>
             <button class="bg-third-gradient rounded-full py-4 px-8 text-white text-center font-medium">
               发送定制请求
             </button>

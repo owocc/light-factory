@@ -1,16 +1,8 @@
 <template>
-  <header class="h-full w-full">
-    <nav class="h-full flex items-center border-b px-6 justify-between">
-      <!--  导航栏左侧信息 -->
-      <div>
-        <h2 class="hover:p-2 origin-top hover:bg-slate-100 duration-300 cursor-pointer rounded-md">{{
-            $route.meta.title
-          }}</h2>
-      </div>
-
-      <div>
-        <LayoutAdminHeaderUserActions/>
-      </div>
+  <header
+      class="w-full sticky top-0 shadow-line dark:shadow-gray-700 shadow-gray-200 left-0 bg-white z-50 dark:bg-gray-800">
+    <nav class="flex items-center justify-between nav px-6">
+      <CommonLogo dark logo class="py-2 px-4 hover:bg-slate-100 rounded-lg dark:hover:bg-slate-700 !duration-200"/>
     </nav>
   </header>
 </template>

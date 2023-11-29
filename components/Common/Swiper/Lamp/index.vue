@@ -1,7 +1,6 @@
 <template>
   <Swiper
-      class="!grid !py-10 !pb-16 !relative !px-16 !md:px-0"
-      loop
+      class="!grid !pb-16 !relative !md:px-0 !pt-4"
       slides-per-view="auto"
       centered-slides
       :breakpoints="{
@@ -11,10 +10,7 @@
     }"
   >
     <SwiperSlide v-for="item in 12" class="!w-auto">
-      <CommonCardProductCard/>
+      <CommonCardProduct/>
     </SwiperSlide>
-    <!--    <template #container-end>-->
-    <!--      <CommonSwiperLampNavigation/>-->
-    <!--    </template>-->
   </Swiper>
 </template>

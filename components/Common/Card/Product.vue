@@ -1,6 +1,9 @@
+<script setup lang="ts">
+
+</script>
 <template>
   <article
-      class="relative dark:hover:outline-slate-300 dark:hover:outline outline-offset-2 outline outline-transparent w-48 h-92 bg-container rounded-t-full px-3 pt-3 pb-4 ms-4  transition-all ease-out hover:shadow-xl dark:hover:shadow-none hover:shadow-slate-200 cursor-pointer group dark:bg-container-dark"
+      class="relative dark:hover:outline-primary dark:hover:outline outline-offset-2 outline outline-transparent w-48 h-92 bg-container rounded-t-full px-3 pt-3 pb-4 ms-4  transition-all ease-out hover:shadow-xl dark:hover:shadow-none hover:shadow-slate-200 cursor-pointer group dark:bg-container-dark"
   >
     <div class="bg-base-body h-56 rounded-t-full mb-3 overflow-hidden dark:bg-base-body-dark">
       <img src="/img/modern-lamp.png" alt=""

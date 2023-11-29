@@ -17,7 +17,7 @@ const props = defineProps<SiteLinkProps>()
   <div>
     <h3 class="text-md font-medium mb-4">{{ props?.title }}</h3>
     <ul class="grid gap-y-3">
-      <li v-for="link in props.links">
+      <li v-for="link in props.links" class="text-gray-400">
         <NuxtLink v-if="link.to" :to="link?.to"/>
         <a v-else :href='link?.href' class="transition-colors text-sm hover:text-primary"
         >{{ link.label }}</a

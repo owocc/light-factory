@@ -14,7 +14,7 @@ const handlerToggleMenu = (state) => {
 const menuListContainerClasses = clsx(
     'fixed left-0 -top-full divide-fuchsia-400 bg-base-body w-full p-16 z-50 border-b ',
     'lg:top-0 lg:bg-transparent lg:relative lg:p-0 lg:border-none',
-    'dark:bg-container-dark dark:border-none'
+    'dark:bg-container-dark dark:border-primary dark:bg-opacity-50 dark:backdrop-blur-lg lg:dark:bg-transparent'
 )
 
 const {navbarMenuList} = useClientNavConfig()
@@ -27,7 +27,7 @@ const {navbarMenuList} = useClientNavConfig()
       ref="menu"
       :class="menuListContainerClasses"
   >
-    <ul class="flex flex-col text-center gap-y-8 lg:flex-row lg:gap-16">
+    <ul class="flex flex-col  text-center gap-y-8 lg:flex-row lg:gap-16">
       <li v-for="menu in navbarMenuList">
         <NuxtLink
             activeClass="!bg-third-gradient !bg-clip-text !text-transparent"

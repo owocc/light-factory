@@ -1,9 +1,7 @@
 <script setup lang="ts">
 definePageMeta({
-  title: '仪表盘'
+  title: '后台管理',
+  redirect: '/admin/good'
 })
 
 </script>
-<template>
-  <div class="p-4" />
-</template>

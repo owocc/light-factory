@@ -7,7 +7,7 @@ generator client {
 
 datasource db {
   // NOTE: You probably want to change this to another database later on
-  provider = "sqlite"
+  provider = "mysql"
 
   // This value is read from the .env file.
   url = env("DATABASE_URL")
@@ -30,12 +30,20 @@ model User {
 
 // 灯具分类
 model Category {
-  id    Int    @id @default(autoincrement())
-  name  String
+  id   Int    @id @default(autoincrement())
+  name String
+
+  parentId Int?
+  parent   Category?  @relation("Parents", fields: [parentId], references: [id])
+  children Category[] @relation("Parents")
+
+  createAt DateTime @default(now())
+  updateAt DateTime @updatedAt
+
   lamps Lamp[]
 }
 
-// 灯具详情
+// 灯具,和分类是多对多关系
 model Lamp {
   id     Int     @id @default(autoincrement())
   name   String // 名称
@@ -50,13 +58,16 @@ model Lamp {
   categoryId Int
 }
 
-// 图片
+// 图片,只用一个云服务
 model Image {
-  id     String @id @default(uuid())
-  url    String
-  Lamp   Lamp?  @relation(fields: [lampId], references: [id])
+  id  String @id @default(uuid())
+  url String
+
+  Lamp   Lamp? @relation(fields: [lampId], references: [id])
   lampId Int?
 
   createAt DateTime @default(now())
   updateAt DateTime @updatedAt
 }
+
+//订单,没有购物车,一次只能买一种,也就是会创建一个订单

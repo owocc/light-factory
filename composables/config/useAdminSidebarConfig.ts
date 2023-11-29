@@ -1,46 +1,38 @@
-import type { MenuOption } from 'naive-ui'
-import { NuxtLink } from '#components'
+// TODO 取消此配置项,改用DOM直接渲染?
+const menuList = [
+  {
+    to: '/admin/good',
+    text: '商品管理',
+    icon: 'i-tabler-shopping-cart-cog',
+    key: 'good-manage'
+  },
+  {
+    to: '/admin/category',
+    text: '分类管理',
+    icon: 'i-tabler-category-2',
+    key: 'category-manage'
+  },
+  {
+    to: '/admin/order',
+    text: '订单管理',
+    icon: 'i-tabler-clipboard-data',
+    key: 'order-manage'
+  },
+  {
+    to: '/admin/customized',
+    text: '定制信息',
+    icon: 'i-tabler-ruler',
+    key: 'customized-manage'
+  },
+  {
+    to: '/admin/user',
+    text: '用户管理',
+    icon: 'i-tabler-user-cog',
+    key: 'user-manage'
+  },
 
-const menuList: MenuOption = [
-  {
-    label: () => h(NuxtLink, {
-      to: '/admin'
-    }, { default: () => '仪表盘' }),
-    key: 'admin'
-  },
-  {
-    label: () => h(NuxtLink, {
-      to: '/admin/lamp'
-    }, { default: () => '灯具分类管理' }),
-    key:
-      'pinball-19312'
-  },
-  {
-    label: () => h(NuxtLink, {
-      to: '/admin/lamp'
-    }, { default: () => '灯具管理' }),
-    key:
-      'pinball-1973'
-  },
-  {
-    label: '订单管理',
-    key:
-      'a-wild-sheep-chasesd'
-  },
-  {
-    label: () => h(NuxtLink, {
-      to: '/admin/lamp'
-    }, { default: () => '站点管理' }),
-    key:
-      'pinball-asdasd'
-  },
-  {
-    label: '私人定制',
-    key:
-      'a-wild-sheep-chase'
-  }
 ]
-export default function useAdminSidebarConfig () {
+export default function useAdminSidebarConfig() {
   return {
     menuList
   }

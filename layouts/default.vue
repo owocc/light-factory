@@ -1,7 +1,6 @@
 <template>
-  <div>
-    <LayoutClientHeader />
-    <slot />
-    <LayoutClientFooter />
-  </div>
+  <LayoutClientHeader/>
+  <slot/>
+  <LayoutClientFooter/>
 </template>
+

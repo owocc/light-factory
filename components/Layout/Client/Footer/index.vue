@@ -8,9 +8,9 @@ const {footerLinks} = useClientNavConfig()
       <div class="grid gap-y-12 gap-8 md:grid-cols-[max-content,1fr]">
         <div class="max-w-md lg:min-w-[24rem]">
           <div class="mb-4 ">
-            <CommonLogo dark/>
+            <CommonLogo dark logo/>
           </div>
-          <p>星光灯坊，独特设计，温馨照明。精选灯具，点亮生活。</p>
+          <p class="text-gray-400">星光灯坊，独特设计，温馨照明。精选灯具，点亮生活。</p>
         </div>
         <!-- footer data -->
         <div
@@ -19,13 +19,10 @@ const {footerLinks} = useClientNavConfig()
           <LayoutClientFooterSiteLink v-for="item in footerLinks" :title="item.title" :links="item.links"/>
         </div>
       </div>
-      <!-- footer group -->
       <div
-          class="mt-16 flex flex-col text-center md:flex-row md:justify-between items-center text-sm gap-y-4"
+          class="mt-16 flex flex-col text-center md:flex-row md:justify-between items-center text-sm gap-y-4 text-gray-400"
       >
-        <div class="flex justify-center gap-x-6 md:order-1">
-          <!-- 一则隐私政策 -->
-
+        <div class="flex justify-center gap-x-6 md:order-1 ">
           <UiLink href="#">条款和协议</UiLink>
           <UiLink href="#">隐私政策</UiLink>
         </div>
