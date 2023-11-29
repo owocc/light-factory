@@ -50,6 +50,9 @@ export default defineAppConfig({
     },
     formGroup: {
       container: 'mt-2'
+    },
+    selectMenu: {
+
     }
   }
 })

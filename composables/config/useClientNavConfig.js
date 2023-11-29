@@ -1,9 +1,6 @@
-interface NavbarMenu {
-  to: string
-  title: string
-}
 
-const navbarMenuList: NavbarMenu[] = [{
+
+const navbarMenuList= [{
   to: '/',
   title: '首页'
 },

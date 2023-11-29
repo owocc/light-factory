@@ -27,9 +27,8 @@ const handlerClose = () => {
 }
 
 // 提交时的事件,会自动触发关闭事件
-const handlerSubmit = async () => {
-    await emit('submit')
-    emit('close')
+const handlerSubmit = () => {
+    emit('submit')
 }
 
 </script>
