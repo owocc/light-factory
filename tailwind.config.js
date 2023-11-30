@@ -39,7 +39,12 @@ export default {
       boxShadow: {
         line: '0 1px 0px rgba(0, 0, 0, 1)'
       }
-    }
+    },
+    safelist:[
+      {
+        pattern: /text-(red|green|blue|primary|gray)-(600)/,
+      },
+    ]
   },
   plugins: []
 }

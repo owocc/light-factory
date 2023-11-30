@@ -49,7 +49,9 @@ model Lamp {
   name   String // 名称
   price  Decimal // 价格
   stock  Int // 库存
+  sales  Int     @default(0)
   images Image[] // 图片
+  desc   String?
 
   createAt DateTime @default(now())
   updateAt DateTime @updatedAt
@@ -60,8 +62,9 @@ model Lamp {
 
 // 图片,只用一个云服务
 model Image {
-  id  String @id @default(uuid())
-  url String
+  id   String @id @default(uuid())
+  url  String
+  desc String?
 
   Lamp   Lamp? @relation(fields: [lampId], references: [id])
   lampId Int?
@@ -69,5 +72,3 @@ model Image {
   createAt DateTime @default(now())
   updateAt DateTime @updatedAt
 }
-
-//订单,没有购物车,一次只能买一种,也就是会创建一个订单

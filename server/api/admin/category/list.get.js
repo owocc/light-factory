@@ -1,5 +1,4 @@
 import { getCategoryList } from "~/server/db/category"
-import { paginationHelper } from "~/server/utils/paginationHelper"
 
 // 获取所有分类列表,不会查询出一级分类
 export default defineEventHandler(async (event) => {
