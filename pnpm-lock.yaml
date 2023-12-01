@@ -35,9 +35,9 @@ dependencies:
   qiniu-js:
     specifier: ^3.4.1
     version: 3.4.1
-  scrollreveal:
-    specifier: ^4.0.9
-    version: 4.0.9
+  tailwind-scrollbar-hide:
+    specifier: ^1.1.7
+    version: 1.1.7
 
 devDependencies:
   '@nuxtjs/eslint-config-typescript':
@@ -58,12 +58,6 @@ devDependencies:
   nuxt-icon:
     specifier: ^0.6.6
     version: 0.6.6(nuxt@3.8.2)(vite@4.5.0)(vue@3.3.8)
-  prettier:
-    specifier: ^3.1.0
-    version: 3.1.0
-  prettier-plugin-tailwindcss:
-    specifier: ^0.5.7
-    version: 0.5.7(prettier@3.1.0)
   prisma:
     specifier: ^5.4.1
     version: 5.6.0
@@ -4872,16 +4866,6 @@ packages:
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
     hasBin: true
 
-  /is-dom-node-list@1.2.1:
-    resolution: {integrity: sha512-P1H071iT5TGG8pAHslhrLDo/tQLYc8tGuWABVqhGU4l2mm7aDNb9cx2myQ2AujEQO6B2cAujcW4a0/+6UfXInw==}
-    dependencies:
-      is-dom-node: 1.0.4
-    dev: false
-
-  /is-dom-node@1.0.4:
-    resolution: {integrity: sha512-NEnTHKCeyGJTL0cKdzATF8SWzyTMYf5CbNKWBvsXvyMxZG32g+a09qkeCbrfQNLTD85CbPeHb4YjIJCjyzF0yA==}
-    dev: false
-
   /is-extendable@0.1.1:
     resolution: {integrity: sha512-5BMULNob1vgFX6EjQw5izWDxrecWK9AM72rugNr0TFldMOi0fj6Jk+zeKIt0xGj4cEfQIJth4w3OKWOJ4f+AFw==}
     engines: {node: '>=0.10.0'}
@@ -5539,10 +5523,6 @@ packages:
   /minipass@7.0.4:
     resolution: {integrity: sha512-jYofLM5Dam9279rdkWzqHozUo4ybjdZmCsDHePy5V/PbBcVMiSZR97gmAy45aqi8CK1lG2ECd356FU86avfwUQ==}
     engines: {node: '>=16 || 14 >=14.17'}
-
-  /miniraf@1.0.0:
-    resolution: {integrity: sha512-XpvhtJYzVrpXe+JoAthrT9E40NIrSDDMcdHEYL2M+lR/OCas0nadetcBBq/MWYqlgV5aDWVQ3mfAqd+fG6Y/EQ==}
-    dev: false
 
   /minizlib@2.1.2:
     resolution: {integrity: sha512-bAxsR8BVfj60DWXHE3u30oHzfl4G7khkSuPW+qvpd7jFRHm7dLxOjUk1EHACJ/hxLY8phGJ0YhYHZo7jil7Qdg==}
@@ -6848,67 +6828,6 @@ packages:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}
     engines: {node: '>= 0.8.0'}
 
-  /prettier-plugin-tailwindcss@0.5.7(prettier@3.1.0):
-    resolution: {integrity: sha512-4v6uESAgwCni6YF6DwJlRaDjg9Z+al5zM4JfngcazMy4WEf/XkPS5TEQjbD+DZ5iNuG6RrKQLa/HuX2SYzC3kQ==}
-    engines: {node: '>=14.21.3'}
-    peerDependencies:
-      '@ianvs/prettier-plugin-sort-imports': '*'
-      '@prettier/plugin-pug': '*'
-      '@shopify/prettier-plugin-liquid': '*'
-      '@shufo/prettier-plugin-blade': '*'
-      '@trivago/prettier-plugin-sort-imports': '*'
-      prettier: ^3.0
-      prettier-plugin-astro: '*'
-      prettier-plugin-css-order: '*'
-      prettier-plugin-import-sort: '*'
-      prettier-plugin-jsdoc: '*'
-      prettier-plugin-marko: '*'
-      prettier-plugin-organize-attributes: '*'
-      prettier-plugin-organize-imports: '*'
-      prettier-plugin-style-order: '*'
-      prettier-plugin-svelte: '*'
-      prettier-plugin-twig-melody: '*'
-    peerDependenciesMeta:
-      '@ianvs/prettier-plugin-sort-imports':
-        optional: true
-      '@prettier/plugin-pug':
-        optional: true
-      '@shopify/prettier-plugin-liquid':
-        optional: true
-      '@shufo/prettier-plugin-blade':
-        optional: true
-      '@trivago/prettier-plugin-sort-imports':
-        optional: true
-      prettier-plugin-astro:
-        optional: true
-      prettier-plugin-css-order:
-        optional: true
-      prettier-plugin-import-sort:
-        optional: true
-      prettier-plugin-jsdoc:
-        optional: true
-      prettier-plugin-marko:
-        optional: true
-      prettier-plugin-organize-attributes:
-        optional: true
-      prettier-plugin-organize-imports:
-        optional: true
-      prettier-plugin-style-order:
-        optional: true
-      prettier-plugin-svelte:
-        optional: true
-      prettier-plugin-twig-melody:
-        optional: true
-    dependencies:
-      prettier: 3.1.0
-    dev: true
-
-  /prettier@3.1.0:
-    resolution: {integrity: sha512-TQLvXjq5IAibjh8EpBIkNKxO749UEWABoiIZehEPiY4GNpVdhaFKqSTu+QrlU6D2dPAfubRmtJTi4K4YkQ5eXw==}
-    engines: {node: '>=14'}
-    hasBin: true
-    dev: true
-
   /pretty-bytes@6.1.1:
     resolution: {integrity: sha512-mQUvGU6aUFQ+rNvTIAcZuWGRT9a6f6Yrg9bHs4ImKF+HZCEK+plBvnAZYSIQztknZF2qnzNtr6F8s0+IuptdlQ==}
     engines: {node: ^14.13.1 || >=16.0.0}
@@ -7151,10 +7070,6 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /rematrix@0.3.0:
-    resolution: {integrity: sha512-xB/9ZvJIKaDgXX0qkvV9/pLD8zK23A6TVV6F8Vhsl+SrxbBeVYutz5uszxgC6Rt3RP9LZiH8OXaYjr+x6WXWmQ==}
-    dev: false
-
   /replace-in-file@6.3.5:
     resolution: {integrity: sha512-arB9d3ENdKva2fxRnSjwBEXfK1npgyci7ZZuwysgAp7ORjHSyxz6oqIjTEv8R0Ydl4Ll7uOAZXL4vbkhGIizCg==}
     engines: {node: '>=10'}
@@ -7306,15 +7221,6 @@ packages:
     resolution: {integrity: sha512-CtuThmgHNg7zIZWAXi3AsyIzA3n4xx7aNyjwC2VJldO2LMVDhFK+63xGqq6CsJH4rTAt6/M+N4GhZiDYPx9eUw==}
     dependencies:
       loose-envify: 1.4.0
-
-  /scrollreveal@4.0.9:
-    resolution: {integrity: sha512-fefGvzVS8YbXbDK1+T0kvy2yqxaiBJZeGUhPeqajf+7sGqtX4xikbKGAlzQuPCpswAMswx94ZwhDjXKnRIqW1w==}
-    requiresBuild: true
-    dependencies:
-      miniraf: 1.0.0
-      rematrix: 0.3.0
-      tealight: 0.3.6
-    dev: false
 
   /scule@1.1.0:
     resolution: {integrity: sha512-vRUjqhyM/YWYzT+jsMk6tnl3NkY4A4soJ8uyh3O6Um+JXEQL9ozUCe7pqrxn3CSKokw0hw3nFStfskzpgYwR0g==}
@@ -7767,6 +7673,10 @@ packages:
     resolution: {integrity: sha512-3mFKyCo/MBcgyOTlrY8T7odzZFx+w+qKSMAmdFzRvqBfLlSigU6TZnlFHK0lkMwj9Bj8OYU+9yW9lmGuS0QEnQ==}
     dev: false
 
+  /tailwind-scrollbar-hide@1.1.7:
+    resolution: {integrity: sha512-X324n9OtpTmOMqEgDUEA/RgLrNfBF/jwJdctaPZDzB3mppxJk7TLIDmOreEDm1Bq4R9LSPu4Epf8VSdovNU+iA==}
+    dev: false
+
   /tailwindcss@3.3.5:
     resolution: {integrity: sha512-5SEZU4J7pxZgSkv7FP1zY8i2TIAOooNZ1e/OGtxIEv6GltpoiXUqWvLy89+a10qYTB1N5Ifkuw9lqQkN9sscvA==}
     engines: {node: '>=14.0.0'}
@@ -7819,13 +7729,6 @@ packages:
       minizlib: 2.1.2
       mkdirp: 1.0.4
       yallist: 4.0.0
-
-  /tealight@0.3.6:
-    resolution: {integrity: sha512-Dys3N8jFBThD9pNVpPCyUiu6DfWcTBdqWQJIvnAuVaFkGEdrPBJ43070vVbn6sTlLvn2IQK2zFW4FrVIrTo8eQ==}
-    dependencies:
-      is-dom-node: 1.0.4
-      is-dom-node-list: 1.2.1
-    dev: false
 
   /terser@5.24.0:
     resolution: {integrity: sha512-ZpGR4Hy3+wBEzVEnHvstMvqpD/nABNelQn/z2r0fjVWGQsN3bpOLzQlqDxmb4CDZnXq5lpjnQ+mHQLAOpfM5iw==}

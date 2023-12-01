@@ -1,3 +1,6 @@
+<script setup>
+const x = ref(true)
+</script>
 <template>
-  order
+  <UiModal v-model="x"/>
 </template>

@@ -1,171 +1,234 @@
 <script setup>
-const toast = useToast()
-// 表格-字段映射
-const columns = [{
-  key: 'id',
-  label: 'ID'
-}, {
-  key: 'name',
-  label: '分类名称'
-}, {
-  key: 'parent.name',
-  label: '父级分类'
-}, {
-  key: 'createAt',
-  label: '创建时间'
-},
-{
-  key: 'updateAt',
-  label: '更新时间'
-},
-{
-  key: 'actions'
-}]
+const toast = useToast();
+const { useTableColumns, fetchLampList, fetchLampDelete, fetchCreateLamp } =
+  useFetchLampApi();
+
+const columns = useTableColumns();
 
 // 表格-操作按钮
 const tableActions = (row) => [
-  [{
-    label: '编辑分类',
-    icon: 'i-heroicons-pencil-square-20-solid',
-    click: () => {
-      state.id = row.id
-      state.name = row.name
-      state.parent = typeList.value.list.filter(e => e.id === row.parentId)[0]
-      handlerOpenForm()
-    }
-  }, {
-    label: '删除分类',
-    icon: 'i-heroicons-trash-20-solid',
-    click: async () => {
-      deleteList.value = [row.id]
-      handlerOpenDelete()
-    }
-  }]
-]
+  [
+    {
+      label: "灯具详细",
+      icon: "i-heroicons-eye-20-solid",
+      click: () => {},
+    },
+    {
+      label: "灯具订单",
+      icon: "i-heroicons-chart-bar-square",
+      click: () => {},
+    },
+  ],
+  [
+    {
+      label: "更改所属分类",
+      icon: "i-heroicons-folder-minus-20-solid",
+      click: () => {},
+    },
+
+    {
+      label: "分类详细",
+      icon: "i-heroicons-folder-open-20-solid",
+      click: () => {
+        useRouter().push({
+          path: `/admin/category/${row.categoryId}`,
+        });
+      },
+    },
+  ],
+  [
+    {
+      label: "编辑灯具",
+      icon: "i-heroicons-pencil-square-20-solid",
+      click: () => {},
+    },
+    {
+      label: "删除灯具",
+      icon: "i-heroicons-trash-20-solid",
+      click: () => {
+        handlerDeleteModalOpen([row]);
+      },
+    },
+  ],
+];
 
 // 页面操作按钮
 const pageActions = [
   {
-    icon: 'i-heroicons-arrow-path',
-    text: '刷新数据',
-    click: () => { refresh() }
+    icon: "i-heroicons-arrow-path",
+    text: "刷新数据",
+    click: () => {
+      refresh();
+    },
   },
   {
-    icon: 'i-heroicons-trash',
-    text: '删除选中的数据',
+    icon: "i-heroicons-trash",
+    text: "删除选中的数据",
     click: () => {
-      deleteList.value = selected.value.map(item => item.id)
-      handlerOpenDelete()
-    }
-  }
-]
+      handlerDeleteModalOpen(selected.value);
+    },
+  },
+];
 
 // 表格-选择
-const selected = ref([])
+const selected = ref([]);
 
 // 查询参数
 const query = reactive({
-  name: '',
+  name: "",
   page: 1,
-  limit: 5
-})
-const { name, page, limit } = toRefs(query)
+  limit: 5,
+});
 
-const { fetchCategoryList, fetchDeleteCategory, fetchAddCategory, fetchCategoryTypeList, fetchUpdateCategory } = useFetchCategoryApi()
+const { name, page, limit } = toRefs(query);
 
+// -------- 页面数据获取 -----------
+const {
+  pending,
+  data: category,
+  refresh,
+} = await useLazyAsyncData(`lamp`, () => fetchLampList(query), {
+  default: () => ({ list: [], total: 0 }),
+  watch: [query],
+  deep: true,
+});
 
-// 对于管理端的数据都是异步获取的,都是通过监听获取数据
-// 页面数据获取
-const { pending, data: category, refresh } = await useLazyAsyncData(
-  `category`,
-  () => fetchCategoryList(query),
+const { fetchCategoryList } = useFetchCategoryApi();
+
+// 分类信息获取
+const { refresh: categoryRefresh, data: categoryData } = await useLazyAsyncData(
+  "category",
+  () =>
+    fetchCategoryList({
+      limit: 10000,
+      page: 1,
+    }),
   {
     default: () => ({ list: [], total: 0 }),
-    watch: [name, page, limit],
   }
-)
+);
 
+const refreshData = async () => {
+  await refresh();
+  await categoryRefresh();
+};
+
+// ---------- 删除弹窗和需要使用的数据状态 --------
+const deleteState = reactive({
+  visible: false,
+  list: [],
+});
+
+// 打开删除弹框
+const handlerDeleteModalOpen = (ids) => {
+  if (!Array.isArray(ids) || ids.length === 0) {
+    return toast.add({
+      title: "🙅请选择需要删除的数据",
+      description: "没有选择任何数据就来删除是不行的!",
+      color: "red",
+      icon: "i-heroicons-exclamation-triangle",
+      timeout: 1500,
+    });
+  }
+  deleteState.list = ids.map((item) => item.id);
+  deleteState.visible = true;
+};
+// 关闭删除弹窗触发事件,清理数据
+const handlerDeleteModalClose = () => {
+  deleteState.list = [];
+  deleteState.visible = false;
+};
 // 删除数据
-const deleteModalVisible = ref(false)
-const deleteList = ref([])
-
-const handlerOpenDelete = async () => {
-  deleteModalVisible.value = true
-}
-const handlerCloseDelete = () => {
-  // 清空待删除的数据
-  deleteList.value = []
-  deleteModalVisible.value = false
-}
-
-const delLoading = ref(false)
-const handlerFetchDelete = async () => {
-  delLoading.value = true
-  await fetchDeleteCategory(deleteList.value)
-  selected.value = []
-  await refresh()
-  delLoading.value = false
-  handlerCloseDelete()
+const handlerDeleteSubmit = async () => {
+  await fetchLampDelete(deleteState.list);
+  await refresh();
   toast.add({
-    title: '删除成功', timeout: 1000, icon: "i-heroicons-check-circle",
-    description: "所选分类数据已删除,分类中所有灯具数据已迁移至其它"
-  })
-}
+    title: "数据已删除",
+    color: "green",
+    icon: "i-heroicons-check-circle",
+    timeout: 1500,
+  });
+  selected.value = [];
+  handlerDeleteModalClose();
+};
 
-// 添加数据
-const formVisible = ref(false)
-const state = reactive({
-  id: null,
-  name: null,
-  parent: undefined,
-})
-const handlerOpenForm = () => {
-  formVisible.value = true
-}
-// 处理添加数据
-const handlerAdd = async () => {
-  await fetchAddCategory({
-    name: state.name,
-    parentId: state.parent.id
-  })
+// -------- 新建/修改灯具 -----------------
+const formState = reactive({
+  visible: false,
+  title: "",
+  loading: false,
+  imgVisible: false,
+  form: {
+    id: null,
+    name: "",
+    price: "",
+    stock: "",
+    desc: "",
+    recommend: false,
+    category: null,
+    images: [],
+    detail: "",
+  },
+});
 
-  toast.add({
-    title: '添加成功', timeout: 1000, icon: "i-heroicons-check-circle",
-  })
-}
+// 打开灯具表单
+const handlerFormOpen = () => {
+  formState.visible = true;
+};
 const handlerFormClose = () => {
-  state.name = null
-  state.parent = undefined
-  state.id = undefined
-  formVisible.value = false
-}
-const { refresh: refreshTypeList, data: typeList } = useLazyAsyncData('typeList',
-  () => fetchCategoryTypeList(),
-  {
-    default: () => ({ list: [], total: 0 })
-  }
-)
-const handlerUpdate = async () => {
-  await fetchUpdateCategory({
-    name: state.name,
-    parentId: state.parent.id,
-    id: state.id
-  })
-
-  toast.add({
-    title: '修改成功', timeout: 1000, icon: "i-heroicons-check-circle",
-  })
-}
+  console.log(121);
+  formState.visible = false;
+  formState.form = {
+    id: null,
+    name: "",
+    price: "",
+    stock: "",
+    desc: "",
+    recommend: false,
+    category: null,
+    images: [],
+    detail: "",
+  };
+};
+// 创建灯具
+const handlerCreateLamp = async (data) => {
+  return await useAsyncData("create", () => fetchCreateLamp(data));
+};
 const handlerFormSubmit = async () => {
-  if (state.id) {
-    await handlerUpdate()
-  } else {
-    await handlerAdd()
+  const { category, desc, id, images, name, price, recommend,detail, stock } =
+    formState.form;
+  const form = {
+    id,
+    desc,
+    images,
+    name,
+    price,
+    recommend,
+    stock,
+    detail,
+    categoryId: category.id,
+  };
 
+  if (formState.form.id) {
+  } else {
+    const { pending } = await handlerCreateLamp(form);
+    formState.loading = pending;
   }
-  handlerFormClose()
-  await refresh()
-}
+  await refreshData();
+  handlerFormClose();
+};
+// ----- 图片上传/选择 -----
+
+const uploadState = {};
+
+const handlerImageOpen = () => {
+  formState.imgVisible = true;
+};
+
+const handlerImageClose = () => {
+  formState.visible = true;
+  formState.imgVisible = false;
+};
 </script>
 
 <template>
@@ -173,76 +236,111 @@ const handlerFormSubmit = async () => {
     <template #header>
       <UiPageHeader title="灯具管理">
         <template #action>
-          <div class="pr-2 border-r-2 border-gray-100 dark:border-gray-700">
-            <UInput placeholder="输入要查询的分类名" size="lg" v-model="name">
-            </UInput>
-          </div>
+          <UInput placeholder="输入要查询的灯具名" size="lg" v-model="name" />
           <UiButtonActions :items="pageActions" />
         </template>
 
         <template #option>
-          <UButton size="lg" icon="i-heroicons-plus" @click="handlerOpenForm">
-            添加分类
+          <UButton size="lg" @click="handlerFormOpen" icon="i-heroicons-plus">
+            添加灯具
           </UButton>
         </template>
       </UiPageHeader>
     </template>
 
-
-    <UTable v-model="selected" :rows="category.list" :columns="columns" :loading="pending">
+    <UTable
+      v-model="selected"
+      :rows="category.list"
+      :columns="columns"
+      :loading="pending"
+    >
       <template #actions-data="{ row }">
         <UDropdown :items="tableActions(row)">
-          <UButton color="gray" variant="ghost" icon="i-heroicons-ellipsis-horizontal-20-solid" />
+          <UButton
+            color="gray"
+            variant="ghost"
+            icon="i-heroicons-ellipsis-horizontal-20-solid"
+          />
         </UDropdown>
       </template>
     </UTable>
 
     <template #footer>
-      <UiPagination v-model:page="page" :total="category.total" v-model:limit="limit" :limitOptions="[5, 10, 20, 30]" />
+      <UiPagination
+        v-model:page="page"
+        :total="category.total"
+        v-model:limit="limit"
+        :limitOptions="[5, 10, 20, 30]"
+      />
     </template>
   </UiPageContainer>
 
-
   <ClientOnly>
     <!-- 删除数据弹框 -->
-    <AdminDeleteModal :loading="delLoading" @submit="handlerFetchDelete" v-model="deleteModalVisible"
-      @close="handlerCloseDelete" />
-
-
+    <UiModal
+      v-model="deleteState.visible"
+      color="red"
+      :loading="pending"
+      icon="i-heroicons-exclamation-circle"
+      msg="确定要删除这个灯具吗?"
+      btn-label="确定删除"
+      close-label="不删了,留着吧"
+      @close="handlerDeleteModalClose"
+      @submit="handlerDeleteSubmit"
+    />
     <!-- 添加/修改表单 -->
-    <USlideover v-model="formVisible">
-      <UCard class="flex flex-col flex-1" :ui="{
-        body: { base: 'flex-1' },
-        header: {
-          padding: 'pb-0'
-        },
-        ring: '', divide: 'divide-none', rounded: 'rounded-none'
-      }">
-        <template #header>
-          <div class="flex justify-between items-center">
-            <h1>添加分类</h1>
-            <UButton color="gray" variant="ghost" icon="i-heroicons-x-mark-20-solid" class="-my-1" />
-          </div>
-        </template>
+    <AdminPageSlideover
+      @submit="handlerFormSubmit"
+      :loading="formState.loading"
+      :visible="formState.visible"
+      @close="handlerFormClose"
+    >
+      <UForm :state="formState.form" class="grid flex-1 gap-y-4">
+        <UFormGroup label="灯具名称">
+          <UInput v-model="formState.form.name" />
+        </UFormGroup>
+        <UFormGroup label="简述信息">
+          <UInput v-model="formState.form.desc" />
+        </UFormGroup>
+        <UFormGroup label="详细信息">
+          <UTextarea v-model="formState.form.detail" />
+        </UFormGroup>
+        <UFormGroup label="价格">
+          <UInput type="number" v-model="formState.form.price" />
+        </UFormGroup>
+        <UFormGroup label="库存">
+          <UInput type="number" v-model="formState.form.stock" />
+        </UFormGroup>
+        <UFormGroup label="分类">
+          <USelectMenu
+            searchable
+            searchable-placeholder="搜索分类名称"
+            class="w-full"
+            placeholder="选择所属分类"
+            v-model="formState.form.category"
+            :options="categoryData.list"
+            option-attribute="name"
+          />
+        </UFormGroup>
+        <UFormGroup label="设为推荐">
+          <UToggle v-model="formState.form.recommend" />
+        </UFormGroup>
+        <UFormGroup label="修改/添加图片">
+          <UButton
+            icon="i-heroicons-photo"
+            @click="handlerImageOpen"
+            label="打开图片设置"
+            block
+          />
+        </UFormGroup>
+      </UForm>
+    </AdminPageSlideover>
+    <!-- @close="handlerImageClose" -->
 
-
-        <UForm class="flex flex-col gap-y-4" :state="state" @submit="handlerAdd">
-          <UFormGroup label="分类名称" size="lg">
-            <UInput v-model="state.name" color="gray"></UInput>
-          </UFormGroup>
-          <UFormGroup label="父级分类" size="lg">
-            <USelectMenu placeholder="请选择父级分类" v-model="state.parent" :options="typeList.list" optionAttribute="name">
-            </USelectMenu>
-          </UFormGroup>
-        </UForm>
-
-        <template #footer>
-          <div class="grid items-center grid-cols-2 gap-x-4">
-            <UButton class="w-full" block size="lg" @click="handlerFormSubmit">确定</UButton>
-            <UButton class="w-full" block color="gray" size="lg" @click="handlerFormClose">取消</UButton>
-          </div>
-        </template>
-      </UCard>
-    </USlideover>
+    <UiImageSelect
+      @close="handlerImageClose"
+      v-model="formState.form.images"
+      :visible="formState.imgVisible"
+    />
   </ClientOnly>
 </template>

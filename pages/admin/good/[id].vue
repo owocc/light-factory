@@ -1,0 +1,5 @@
+<template>
+  <UiPageContainer> 
+    
+  </UiPageContainer>
+</template>
