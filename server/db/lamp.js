@@ -30,3 +30,41 @@ export const getLampList = async ({ query, pagination }) => {
     list: list.map(transformerLampList),
   };
 };
+
+/**
+ * 根据一个或者多个 Id 删除灯具
+ * @param {*} ids
+ * @returns
+ */
+export const deleteLamp = async (ids) => {
+  return await prisma.lamp.deleteMany({
+    where: {
+      id: {
+        in: ids,
+      },
+    },
+  });
+};
+
+// 新建灯具
+export const addLamp = async (data) => {
+  return await prisma.lamp.create({
+    data: {
+      name: data.name,
+      price: data.price,
+      stock: data.stock,
+      desc: data.desc,
+      detail: data.detail,
+      images: {
+        connect: data.images.map((image) => ({
+          id: image.id,
+        })),
+      },
+      categoryId: data.categoryId,
+      recommend: data.recommend,
+    },
+    include: {
+      images: true,
+    },
+  });
+};

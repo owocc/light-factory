@@ -6,6 +6,7 @@ export default function useTailwindcssConfig() {
   const tailwindStickyLeftTopStyle =
     "sticky left-0 top-[calc(var(--header-height))] z-40 max-h-[calc(100vh-var(--header-height))]";
 
+  const tailwindStickyTopStyle = "top-[calc(var(--header-height))]";
   const tailwindMinHeight = "min-h-[calc(100vh-var(--header-height))]";
 
   const tailwindBGStyle = "bg-white dark:bg-gray-800";
@@ -14,5 +15,6 @@ export default function useTailwindcssConfig() {
     tailwindStickyLeftTopStyle,
     tailwindBGStyle,
     tailwindMinHeight,
+    tailwindStickyTopStyle,
   };
 }

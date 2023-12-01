@@ -13,7 +13,11 @@ const props = defineProps({
     <div
       class="border w-32 h-36 flex justify-center bg-white dark:bg-gray-700 dark:border-gray-600 rounded-t-full p-2 group-hover:border-primary transition-all"
     >
-      <img :src="lampData.image" class="w-4/5" />
+      <img v-if="lampData.image" :src="lampData.image" class="w-4/5" />
+      <div v-else class="flex items-center justify-center flex-col gap-y-2">
+        <Icon name="i-heroicons-photo" class="text-4xl" />
+        <span class="text-sm">此灯具无图片</span>
+      </div>
     </div>
 
     <div class="text-center">

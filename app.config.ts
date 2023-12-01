@@ -53,6 +53,13 @@ export default defineAppConfig({
     },
     selectMenu: {
 
+    },
+    textarea:{
+      color:{
+        white:{
+          outline:'dark:bg-gray-700 dark:ring-gray-600'
+        }
+      }
     }
   }
 })

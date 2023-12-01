@@ -18,7 +18,6 @@ const { data, pending, refresh } = await useLazyAsyncData(
     deep: true,
   }
 );
-
 const pageActions = [
   {
     icon: "i-heroicons-arrow-path",
@@ -62,7 +61,7 @@ const pageActions = [
     <template #footer>
       <UiPagination
         v-model:page="query.page"
-        :total="1"
+        :total="data.total"
         v-model:limit="query.limit"
         :limitOptions="[5, 10, 20, 30]"
       />
