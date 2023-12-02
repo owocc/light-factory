@@ -42,7 +42,7 @@ const props = defineProps({
         <span class="block text-sm font-medium mb-4">{{ props.desc }}</span>
       </div>
       <h3 class="text-2xl dark:text-white">
-        <span class="text-primary">$</span>{{ props.price }}
+        <span class="text-primary">$</span>{{ props.price }}.00
       </h3>
     </div>
 

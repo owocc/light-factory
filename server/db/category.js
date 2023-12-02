@@ -160,3 +160,24 @@ export const getCategoryTypeList = async () => {
     total,
   };
 };
+
+// 暂时是获取风格这个分类下的数据
+export const getTreeList = async () => {
+  const resultList = await prisma.category.findMany({
+    where: {
+      parentId: 3,
+    },
+    include: {
+      parent: {
+        select: {
+          name: true,
+        },
+      },
+    },
+  });
+
+  return {
+    list: resultList,
+    total: resultList.length,
+  };
+};

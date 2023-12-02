@@ -1,4 +1,8 @@
-<script setup></script>
+<script setup>
+const { data } = useFetch("/api/lamp/last", {
+  method: "get",
+});
+</script>
 <template>
   <section class="pt-32">
     <!-- container -->
@@ -19,7 +23,11 @@
         <div
           class="grid gap-8 justify-center sm:grid-cols-[repeat(2,max-content)] md:grid-cols-[repeat(3,max-content)] lg:grid-cols-[repeat(4,max-content)]"
         >
-          <CommonCardProduct v-for="item in 8" />
+          <CommonCardProduct
+            v-for="item in data.list"
+            :key="item.id"
+            v-bind="item"
+          />
         </div>
       </div>
     </div>

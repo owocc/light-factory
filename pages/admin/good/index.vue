@@ -26,11 +26,6 @@ const tableActions = (row) => [
     },
   ],
   [
-    {
-      label: "更改所属分类",
-      icon: "i-heroicons-folder-minus-20-solid",
-      click: () => {},
-    },
 
     {
       label: "分类详细",

@@ -12,6 +12,10 @@ const props = defineProps({
     type: String,
     default: "无数据",
   },
+  icon: {
+    type: String,
+    default: "i-heroicons-circle-stack",
+  },
 });
 </script>
 <template>
@@ -25,7 +29,7 @@ const props = defineProps({
   <div v-else-if="!props.visible">
     <slot name="content">
       <div class="flex justify-center items-center flex-col py-8 gap-y-4">
-        <Icon name="i-heroicons-circle-stack" class="text-4xl" />
+        <Icon :name="props.icon" class="text-4xl" />
         <p class="text-sm">{{ props.msg }}</p>
       </div>
     </slot>

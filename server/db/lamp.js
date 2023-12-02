@@ -33,7 +33,7 @@ export const getLampList = async ({ query, pagination }) => {
     list: list.map(transformerLampList),
   };
 };
-
+// 优化所有代码
 /**
  * 根据一个或者多个 Id 删除灯具
  * @param {*} ids
@@ -104,8 +104,8 @@ export const getRecommendList = async () => {
  * 获取所有灯具
  * @returns
  */
-export const getAll = async () => {
-  const list = await prisma.lamp.findMany({
+export const getAll = async (query = {}) => {
+  const lampQuery = {
     include: {
       images: {
         orderBy: {
@@ -113,11 +113,26 @@ export const getAll = async () => {
         },
       },
     },
-  });
-  const total = await prisma.lamp.count();
+  };
+
+  if (query.name) {
+    lampQuery.where = { name: { contains: query.name } };
+  }
+
+  if (query.categoryId) {
+    if (!lampQuery.where) {
+      lampQuery.where = {};
+    }
+
+    lampQuery.where = {
+      ...lampQuery.where,
+      categoryId: query.categoryId,
+    };
+  }
+  const list = await prisma.lamp.findMany(lampQuery);
   return {
     list: list.map((e) => useTransformers(e, lampListMap(e))),
-    total,
+    total: list.length,
   };
 };
 
@@ -167,4 +182,25 @@ export const updateLamp = async (data) => {
       },
     },
   });
+};
+
+// 获取八个最新的数据
+export const getLast = async () => {
+  const list = await prisma.lamp.findMany({
+    include: {
+      images: {
+        orderBy: {
+          order: "desc",
+        },
+      },
+    },
+    orderBy: {
+      createAt: "desc",
+    },
+    take: 8,
+  });
+  return {
+    list: list.map((e) => useTransformers(e, lampListMap(e))),
+    total: list.length,
+  };
 };

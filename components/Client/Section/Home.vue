@@ -1,5 +1,8 @@
 <script setup lang="ts">
 const showVideo = ref(false);
+const { data: countData } = useFetch("/api/sales/count", {
+  method: "get",
+});
 </script>
 <template>
   <section class="pt-6 relative lg:pt-24">
@@ -66,11 +69,11 @@ const showVideo = ref(false);
         <div
           class="flex justify-center gap-x-8 text-center md:justify-normal md:text-left"
         >
-          <div v-for="item in 3">
+          <div v-for="item in countData">
             <h3 class="text-white text-2xl mb-2 font-medium lg:text-4xl">
-              9K<span class="text-primary">+</span>
+              {{ item.value }}<span class="text-primary ml-2">{{ item.afterText }}</span>
             </h3>
-            <span class="text-sm">主页内容内容</span>
+            <span class="text-sm">{{ item.text }}</span>
           </div>
         </div>
       </div>
