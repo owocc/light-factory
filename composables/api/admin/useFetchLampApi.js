@@ -56,11 +56,18 @@ export default function useFetchLampApi() {
     });
   };
 
+  const fetchLampUpdate = (data) => {
+    return $fetch("/api/admin/lamp", {
+      method: "PATCH",
+      body: data,
+    });
+  };
   return {
     useTableColumns,
     fetchLampList,
     fetchLampDelete,
     fetchCreateLamp,
     fetchLampDetail,
+    fetchLampUpdate,
   };
 }

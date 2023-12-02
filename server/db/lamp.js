@@ -121,6 +121,7 @@ export const getAll = async () => {
   };
 };
 
+// 获取灯具详情
 export const getLampDetail = async (id) => {
   return await prisma.lamp.findUnique({
     where: {
@@ -128,6 +129,42 @@ export const getLampDetail = async (id) => {
     },
     include: {
       Category: true,
+    },
+  });
+};
+
+// 更新灯具数据
+export const updateLamp = async (data) => {
+  const { id, name, price, stock, desc, categoryId, recommend, detail } = data;
+  if (data.images && Array.isArray(data.images) && data.images.length > 0) {
+    await prisma.image.updateMany({
+      where: {
+        lampId: id,
+      },
+      data: {
+        lampId: null,
+      },
+    });
+  }
+
+  return await prisma.lamp.update({
+    where: {
+      id: data.id,
+    },
+    data: {
+      id,
+      name,
+      price,
+      stock,
+      desc,
+      categoryId,
+      recommend,
+      detail,
+      images: {
+        connect: data.images.map((image) => ({
+          id: image.id,
+        })),
+      },
     },
   });
 };

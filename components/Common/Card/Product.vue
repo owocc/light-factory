@@ -25,14 +25,14 @@ const props = defineProps({
 </script>
 <template>
   <article
-    class="relative !h-full dark:hover:outline-primary dark:hover:outline outline-offset-2 outline outline-transparent w-48 h-92 bg-container rounded-t-full px-3 pt-3 pb-4 ms-4 transition-all ease-out hover:shadow-xl dark:hover:shadow-none hover:shadow-slate-200 cursor-pointer group dark:bg-container-dark flex flex-col"
+    class="relative !h-full dark:hover:outline-primary dark:hover:outline outline-offset-2 outline outline-transparent w-48 h-92 bg-container rounded-t-full px-3 pt-3 pb-4 ms-4 transition-all ease-out hover:shadow-xl dark:hover:shadow-none hover:shadow-primary/5 cursor-pointer group dark:bg-container-dark flex flex-col"
   >
     <div
       class="bg-base-body h-56 rounded-t-full mb-3 overflow-hidden dark:bg-base-body-dark"
     >
       <img
         :src="props.image"
-        class="block w-32 mx-auto -translate-y-2 group-hover:translate-y-0 transition-transform"
+        class="block w-32 mx-auto -translate-y-2 group-hover:translate-y-0 transition-transform object-contain"
       />
     </div>
 

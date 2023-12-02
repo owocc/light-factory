@@ -6,6 +6,7 @@ const {
   fetchLampDelete,
   fetchCreateLamp,
   fetchLampDetail,
+  fetchLampUpdate,
 } = useFetchLampApi();
 
 const columns = useTableColumns();
@@ -202,7 +203,9 @@ const handlerFormClose = () => {
 const handlerCreateLamp = async (data) => {
   return await useAsyncData("create", () => fetchCreateLamp(data));
 };
-const handlerUpdateLamp = async () => {};
+const handlerUpdateLamp = async (data) => {
+  return await useAsyncData("update", () => fetchLampUpdate(data));
+};
 const handlerFormSubmit = async () => {
   const { Category, desc, id, images, name, price, recommend, detail, stock } =
     formState.form;
@@ -217,8 +220,10 @@ const handlerFormSubmit = async () => {
     detail,
     categoryId: Category.id,
   };
-
+  console.log(form)
   if (formState.form.id) {
+    const { pending } = await handlerUpdateLamp(form);
+    formState.loading = pending;
   } else {
     const { pending } = await handlerCreateLamp(form);
     formState.loading = pending;
