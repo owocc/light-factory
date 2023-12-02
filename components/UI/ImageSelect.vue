@@ -10,6 +10,10 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  lampId: {
+    type: Number,
+    default: null,
+  },
 });
 
 const emit = defineEmits(["update:modelValue", "close"]);
@@ -19,7 +23,7 @@ const { fetchImageList } = useImageApi();
 
 const { data, refresh, pending } = await useLazyAsyncData(
   "images",
-  fetchImageList,
+  () => fetchImageList(props.lampId),
   {
     default: () => ({ list: [], total: 0 }),
     transform: (fetchData) => ({
@@ -31,7 +35,13 @@ const { data, refresh, pending } = await useLazyAsyncData(
     }),
   }
 );
-
+watch(
+  () => props.visible,
+  (val) => {
+    if (!val) return;
+    refresh();
+  }
+);
 const actions = [
   {
     icon: "i-heroicons-archive-box-x-mark",
@@ -79,7 +89,7 @@ const handlerModalClose = () => {
 const handlerModalSubmit = () => {
   const updateList = data.value.list.filter((e) => e.select == true);
   emit("update:modelValue", updateList);
-  handlerModalClose()
+  handlerModalClose();
 };
 </script>
 <template>

@@ -47,7 +47,7 @@ const { navbarMenuList } = useClientNavConfig();
     @click="handlerToggleMenu(true)"
     :class="
       clsx(
-        'flex cursor-pointer text-lg  dark:text-white transition-colors duration-500 lg:hidden',
+        'flex cursor-pointer text-xl  dark:text-white transition-colors duration-500 lg:hidden',
         PinNav ? 'text-base-title' : 'text-white'
       )
     "

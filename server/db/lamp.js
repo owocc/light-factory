@@ -1,5 +1,8 @@
 import prisma from ".";
-import { transformerLampList } from "../transformers/admin/transformersLamp";
+import {
+  lampListMap,
+  transformerLampList,
+} from "../transformers/admin/transformersLamp";
 /**
  * 获取灯具信息,分页
  * @param {*} param0
@@ -65,6 +68,66 @@ export const addLamp = async (data) => {
     },
     include: {
       images: true,
+    },
+  });
+};
+
+/**
+ * 获取推荐灯具列表
+ * @returns
+ */
+export const getRecommendList = async () => {
+  const list = await prisma.lamp.findMany({
+    where: {
+      recommend: true,
+    },
+    include: {
+      images: {
+        orderBy: {
+          order: "desc",
+        },
+      },
+    },
+  });
+  const total = await prisma.lamp.count({
+    where: {
+      recommend: true,
+    },
+  });
+  return {
+    list: list.map((e) => useTransformers(e, lampListMap(e))),
+    total,
+  };
+};
+
+/**
+ * 获取所有灯具
+ * @returns
+ */
+export const getAll = async () => {
+  const list = await prisma.lamp.findMany({
+    include: {
+      images: {
+        orderBy: {
+          order: "desc",
+        },
+      },
+    },
+  });
+  const total = await prisma.lamp.count();
+  return {
+    list: list.map((e) => useTransformers(e, lampListMap(e))),
+    total,
+  };
+};
+
+export const getLampDetail = async (id) => {
+  return await prisma.lamp.findUnique({
+    where: {
+      id: id,
+    },
+    include: {
+      Category: true,
     },
   });
 };

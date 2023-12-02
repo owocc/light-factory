@@ -12,14 +12,26 @@ export const addImage = async (data) => {
 };
 
 // 获取所有未分配的图片
-export const getImageList = async () => {
+export const getImageList = async ({ query }) => {
   const list = await prisma.image.findMany({
     where: {
-      lampId: null,
+      OR: [
+        {
+          lampId: null,
+        },
+        {
+          lampId: query?.lampId,
+        },
+      ],
     },
-    orderBy: {
-      createAt: "desc",
-    },
+    orderBy: [
+      {
+        lampId: "desc",
+      },
+      {
+        createAt: "desc",
+      },
+    ],
   });
   const total = await prisma.image.count({
     where: {

@@ -49,10 +49,18 @@ export default function useFetchLampApi() {
       body: data,
     });
 
+  // 获取灯具详情
+  const fetchLampDetail = (id) => {
+    return $fetch(`/api/admin/lamp/${id}`, {
+      method: "GET",
+    });
+  };
+
   return {
     useTableColumns,
     fetchLampList,
     fetchLampDelete,
     fetchCreateLamp,
+    fetchLampDetail,
   };
 }

@@ -1,7 +1,12 @@
 <script setup>
 const toast = useToast();
-const { useTableColumns, fetchLampList, fetchLampDelete, fetchCreateLamp } =
-  useFetchLampApi();
+const {
+  useTableColumns,
+  fetchLampList,
+  fetchLampDelete,
+  fetchCreateLamp,
+  fetchLampDetail,
+} = useFetchLampApi();
 
 const columns = useTableColumns();
 
@@ -40,7 +45,10 @@ const tableActions = (row) => [
     {
       label: "编辑灯具",
       icon: "i-heroicons-pencil-square-20-solid",
-      click: () => {},
+      click: async () => {
+        const data = await fetchLampDetail(row.id);
+        handlerFormOpen(data);
+      },
     },
     {
       label: "删除灯具",
@@ -165,18 +173,18 @@ const formState = reactive({
     stock: "",
     desc: "",
     recommend: false,
-    category: null,
+    Category: null,
     images: [],
     detail: "",
   },
 });
 
 // 打开灯具表单
-const handlerFormOpen = () => {
+const handlerFormOpen = (data = {}) => {
+  formState.form = { ...formState.form, ...data };
   formState.visible = true;
 };
 const handlerFormClose = () => {
-  console.log(121);
   formState.visible = false;
   formState.form = {
     id: null,
@@ -185,7 +193,7 @@ const handlerFormClose = () => {
     stock: "",
     desc: "",
     recommend: false,
-    category: null,
+    Category: null,
     images: [],
     detail: "",
   };
@@ -194,8 +202,9 @@ const handlerFormClose = () => {
 const handlerCreateLamp = async (data) => {
   return await useAsyncData("create", () => fetchCreateLamp(data));
 };
+const handlerUpdateLamp = async () => {};
 const handlerFormSubmit = async () => {
-  const { category, desc, id, images, name, price, recommend,detail, stock } =
+  const { Category, desc, id, images, name, price, recommend, detail, stock } =
     formState.form;
   const form = {
     id,
@@ -206,7 +215,7 @@ const handlerFormSubmit = async () => {
     recommend,
     stock,
     detail,
-    categoryId: category.id,
+    categoryId: Category.id,
   };
 
   if (formState.form.id) {
@@ -218,8 +227,6 @@ const handlerFormSubmit = async () => {
   handlerFormClose();
 };
 // ----- 图片上传/选择 -----
-
-const uploadState = {};
 
 const handlerImageOpen = () => {
   formState.imgVisible = true;
@@ -317,7 +324,7 @@ const handlerImageClose = () => {
             searchable-placeholder="搜索分类名称"
             class="w-full"
             placeholder="选择所属分类"
-            v-model="formState.form.category"
+            v-model="formState.form.Category"
             :options="categoryData.list"
             option-attribute="name"
           />
@@ -338,6 +345,7 @@ const handlerImageClose = () => {
     <!-- @close="handlerImageClose" -->
 
     <UiImageSelect
+      :lamp-id="formState.form.id"
       @close="handlerImageClose"
       v-model="formState.form.images"
       :visible="formState.imgVisible"

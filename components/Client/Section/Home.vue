@@ -1,8 +1,5 @@
 <script setup lang="ts">
-import Button from "~/components/UI/Button.vue";
-
 const showVideo = ref(false);
-const voide = ref();
 </script>
 <template>
   <section class="pt-6 relative lg:pt-24">
@@ -28,29 +25,33 @@ const voide = ref();
           <h2 class="text-4xl text-white mb-6 lg:text-7xl">温暖心房</h2>
           <!-- buttons -->
           <div class="flex gap-x-4 justify-center md:justify-normal">
-            <UiButton />
+            <UiButton to="/all" label="发现更多" icon="i-carbon-compass" />
             <teleport to="body">
-              <div
-                v-if="showVideo"
-                class="fixed h-screen w-screen backdrop-blur-lg transition-all z-[999] top-0 left-0 flex items-center bg-black bg-opacity-50"
+              <UModal
+                v-model="showVideo"
+                :ui="{
+                  base: 'items-center gap-4 p-2 dark:!bg-base-dark',
+                  width: 'md:max-w-2xl lg:max-w-3xl',
+                  container: 'items-center',
+                  overlay: {
+                    background:
+                      'backdrop-blur-lg bg-white/10 dark:bg-base-body-dark/10',
+                  },
+                }"
               >
-                <div
-                  class="w-full p-6 mx-4 rounded-lg lg:w-2/3 bg-opacity-50 lg:mx-auto relative flex flex-col bg-container-dark dark:bg-opacity-10 backdrop-blur-md items-center gap-y-6"
+                <video
+                  src="/voide/lamp.mp4"
+                  controls
+                  class="rounded-md"
+                  ref="voide w-full"
+                />
+                <button
+                  @click="showVideo = false"
+                  class="text-2xl text-white bg-third-gradient inline-flex rounded-full p-2 transition-all active:scale-95"
                 >
-                  <video
-                    src="/voide/lamp.mp4"
-                    controls
-                    class="rounded-md"
-                    ref="voide"
-                  />
-                  <button
-                    @click="showVideo = false"
-                    class="text-2xl bg-opacity-25 text-white bg-white dark:bg-opacity-30 dark:text-base-body backdrop-blur-2xl inline-flex p-4 rounded-full dark:bg-base-body"
-                  >
-                    <Icon name="i-carbon-close" />
-                  </button>
-                </div>
-              </div>
+                  <Icon name="i-carbon-close" />
+                </button>
+              </UModal>
             </teleport>
             <button
               @click="showVideo = true"
