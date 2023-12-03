@@ -1,5 +1,5 @@
 <script setup>
-const { getCartIds, removeCartId } = useCart();
+const { getCartIds, removeCartId, clearCartIds } = useCart();
 const { data, pending, refresh } = useLazyAsyncData(
   "cart",
   () => $fetch(`/api/lamp/${getCartIds().value.join(",")}`),
@@ -23,6 +23,12 @@ const removeGood = async (id) => {
     title: "移除成功",
   });
   await refresh();
+};
+
+const handlerSubmit = () => {
+  clearCartIds();
+
+  useRouter().push("/success");
 };
 </script>
 <template>
@@ -84,7 +90,12 @@ const removeGood = async (id) => {
               >
             </b>
           </div>
-          <button class="w-full bg-primary p-4 text-white">结账</button>
+          <button
+            class="w-full bg-primary p-4 text-white"
+            @click="handlerSubmit"
+          >
+            结账
+          </button>
         </div>
       </div>
     </UiEmpty>

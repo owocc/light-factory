@@ -32,9 +32,13 @@ export default function useCart() {
     setCartIds(ids.value.filter((e) => e !== id));
   };
 
+  const clearCartIds = () => {
+    setCartIds([]);
+  };
   return {
     getCartIds,
     addCartId,
     removeCartId,
+    clearCartIds,
   };
 }

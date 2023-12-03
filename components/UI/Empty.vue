@@ -28,7 +28,7 @@ const props = defineProps({
   </div>
   <div v-else-if="!props.visible">
     <slot name="content">
-      <div class="flex justify-center items-center flex-col py-8 gap-y-4">
+      <div class="flex justify-center items-center flex-col py-8 gap-y-4 min-h-[500px]">
         <Icon :name="props.icon" class="text-4xl" />
         <p class="text-sm">{{ props.msg }}</p>
       </div>
