@@ -65,7 +65,7 @@ html {
     }
 
     body {
-        @apply !text-base !bg-base-body dark:!bg-base-body-dark dark:!text-white ;
+        @apply !text-base !bg-base-body dark:!bg-base-body-dark dark:!text-white  !transition-all;
     }
 
     h1,

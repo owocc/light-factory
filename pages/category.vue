@@ -1,4 +1,7 @@
 <script setup>
+useSeoMeta({
+  title: '星光灯坊 | 分类'
+})
 // 获取分类列表
 const { data: categoryData } = await useFetch("/api/category/list", {
   method: "get",
@@ -53,9 +56,12 @@ const handlerSwitchCategory = (item) => {
       </div>
     </div>
 
-    <UiEmpty 
-    icon="i-heroicons-archive-box"
-     :loading="pending" :visible="data.list.length > 0" msg="此分类下无灯具哦">
+    <UiEmpty
+      icon="i-heroicons-archive-box"
+      :loading="pending"
+      :visible="data.list.length > 0"
+      msg="此分类下无灯具哦"
+    >
       <div
         class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 justify-center gap-8 2xl:grid-cols-5"
       >

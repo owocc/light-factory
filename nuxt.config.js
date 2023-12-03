@@ -15,6 +15,7 @@ export default defineNuxtConfig({
   },
   imports: {
     dirs: [
+      "composables/*.{js,mjs}",
       "composables/config/*.{js,mjs}",
       "composables/api/{admin,client}/*.{js,mjs}",
     ],

@@ -32,7 +32,7 @@
                 />
               </div>
               <!-- faq title -->
-              <h3 class="font-normal">FAQ 标题文字一大长串</h3>
+              <h3 class="font-normal">FAQ</h3>
             </div>
             <!-- faqContent TODO:这里需要做展开逻辑-->
             <div class="h-0 overflow-hidden transition-all ease duration-300">

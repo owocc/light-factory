@@ -1,3 +1,4 @@
+<script setup></script>
 <template>
   <UiPageLoading />
   <NuxtLayout>
@@ -6,4 +7,3 @@
     <UNotifications />
   </NuxtLayout>
 </template>
-

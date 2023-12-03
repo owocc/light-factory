@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const showVideo = ref(false);
-const { data: countData } = useFetch("/api/sales/count", {
+const { data: countData } = await useFetch("/api/sales/count", {
   method: "get",
 });
 </script>
@@ -28,7 +28,7 @@ const { data: countData } = useFetch("/api/sales/count", {
           <h2 class="text-4xl text-white mb-6 lg:text-7xl">温暖心房</h2>
           <!-- buttons -->
           <div class="flex gap-x-4 justify-center md:justify-normal">
-            <UiButton to="/all" label="发现更多" icon="i-carbon-compass" />
+            <UiButton to="/all" label="发现更多" icon="i-carbon-arrow-right" />
             <teleport to="body">
               <UModal
                 v-model="showVideo"

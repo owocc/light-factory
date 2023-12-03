@@ -16,7 +16,9 @@ const { data, pending } = await useLazyAsyncData(
     watch: [() => query.name],
   }
 );
-
+useSeoMeta({
+  title: '星光灯坊 | 搜索'
+})
 </script>
 
 <template>

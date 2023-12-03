@@ -20,8 +20,27 @@ const props = defineProps({
     type: String,
     default: "/img/modern-lamp.png",
   },
+  id: {
+    type: Number,
+  },
 });
-// const textMax =
+// 添加到购物车
+const { addCartId } = useCart();
+const addToCart = () => {
+  const toast = useToast();
+  if (addCartId(props.id)) {
+    toast.add({
+      timeout: 1000,
+      title: "添加成功",
+    });
+  } else {
+    toast.add({
+      timeout: 1000,
+      title: "此商品已在购物车中",
+      color: "red",
+    });
+  }
+};
 </script>
 <template>
   <article
@@ -49,7 +68,7 @@ const props = defineProps({
     <button
       class="inline-flex p-1 bg-third-gradient rounded-lg text-xl text-white shadow-sm shadow-primary absolute right-3 bottom-4 hover:scale-110 transition-all ease-in-out hover:shadow-md hover:shadow-primary"
     >
-      <Icon :name="props.icon" />
+      <Icon :name="props.icon" @click="addToCart" />
     </button>
   </article>
 </template>

@@ -204,3 +204,30 @@ export const getLast = async () => {
     total: list.length,
   };
 };
+
+// 根据 id 查询灯具数据
+
+export const getByIds = async (ids) => {
+  console.log(ids)
+  const list = await prisma.lamp.findMany({
+    where: {
+      id: {
+        in: ids,
+      },
+    },
+    include: {
+      images: {
+        orderBy: {
+          order: "desc",
+        },
+      },
+    },
+    orderBy: {
+      createAt: "desc",
+    },
+  });
+  return {
+    list: list.map((e) => useTransformers(e, lampListMap(e))),
+    total: list.length,
+  };
+};

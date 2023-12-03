@@ -1,5 +1,8 @@
 <script setup>
-const { data } = useFetch("/api/lamp/all", {
+useSeoMeta({
+  title: '星光灯坊 | 全部'
+})
+const { data } = await useFetch("/api/lamp/all", {
   method: "get",
 });
 </script>

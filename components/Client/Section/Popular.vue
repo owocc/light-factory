@@ -1,6 +1,6 @@
 <script setup>
 const { fetchRecommendList } = useLampApi();
-const { data } = fetchRecommendList();
+const { data } = await fetchRecommendList();
 </script>
 <template>
   <section class="pt-32 overflow-hidden" id="popular">
@@ -15,7 +15,7 @@ const { data } = fetchRecommendList();
           精选推荐，添<span class="text-primary">亮</span>你的空间
         </p>
       </div>
-      <CommonSwiperLamp :lamps="data.list" />
+      <CommonSwiperLamp :lamps="data.list || []" />
     </div>
   </section>
 </template>
